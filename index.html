@@ -105,34 +105,50 @@
 
 /* Dark Mode Adaptation */
 [data-theme="dark"] {
-  --color-bg-app: #12181E;
-  --color-surface-card: #1B242D;
-  --color-surface-subtle: #242F3A;
-  --color-surface-raised: #202A34;
-  --color-border: #2C3946;
-  --color-border-subtle: #222C37;
+  --color-bg-app: #0D131A;
+  --color-surface-card: #151F2B;
+  --color-surface-subtle: #1C2A3A;
+  --color-surface-raised: #213245;
+  --color-border: #2B3D52;
+  --color-border-subtle: #213042;
 
-  --color-text-navy: #F2F5F8;
-  --color-text-secondary: #BAC7D5;
-  --color-text-muted: #7E8E9E;
+  --color-text-navy: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #0D131A;
 
-  --color-primary: #1C5248;
-  --color-primary-hover: #246559;
-  --color-primary-soft: rgba(28, 82, 72, 0.25);
-  --color-primary-tint: rgba(28, 82, 72, 0.35);
+  --color-primary: #34D399;          /* Luminous mint/emerald in dark mode */
+  --color-primary-hover: #4ADE80;
+  --color-primary-active: #10B981;
+  --color-primary-soft: rgba(52, 211, 153, 0.16);
+  --color-primary-tint: rgba(52, 211, 153, 0.28);
 
-  --color-amber-soft: rgba(229, 185, 109, 0.15);
-  --color-amber-border: rgba(229, 185, 109, 0.3);
-  --color-mint-soft: rgba(35, 133, 109, 0.15);
-  --color-mint-border: rgba(35, 133, 109, 0.3);
-  --color-coral-soft: rgba(199, 67, 50, 0.15);
-  --color-coral-border: rgba(199, 67, 50, 0.3);
+  --color-amber: #FBBF24;
+  --color-amber-dark: #F59E0B;
+  --color-amber-soft: rgba(245, 158, 11, 0.16);
+  --color-amber-border: rgba(245, 158, 11, 0.35);
 
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 14px 34px rgba(0, 0, 0, 0.55);
-  --shadow-nav: 0 -4px 24px rgba(0, 0, 0, 0.4);
+  --color-mint: #34D399;
+  --color-mint-soft: rgba(52, 211, 153, 0.16);
+  --color-mint-border: rgba(52, 211, 153, 0.35);
+
+  --color-coral: #F87171;
+  --color-coral-soft: rgba(248, 113, 113, 0.16);
+  --color-coral-border: rgba(248, 113, 113, 0.35);
+
+  --color-blue: #60A5FA;             /* Crisp sky blue for agreement tags */
+  --color-blue-soft: rgba(96, 165, 250, 0.16);
+  --color-blue-border: rgba(96, 165, 250, 0.35);
+
+  --color-wa: #25D366;
+  --color-wa-hover: #22BF5B;
+  --color-wa-soft: rgba(37, 211, 102, 0.16);
+
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 14px 34px rgba(0, 0, 0, 0.7);
+  --shadow-nav: 0 -4px 24px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -1089,6 +1105,301 @@ body {
     box-shadow: 0 0 40px rgba(32, 43, 54, 0.08);
   }
 }
+
+/* ════════ Agreement Status Badge Button ════════ */
+.agreement-badge-btn {
+  border: 1px solid transparent;
+  padding: 6px 13px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  font-family: var(--font-display);
+}
+
+.agreement-badge-btn:hover {
+  transform: translateY(-1px);
+}
+
+.agreement-badge-btn:active {
+  transform: scale(0.96);
+}
+
+.agreement-badge-btn.signed {
+  background-color: var(--color-mint-soft);
+  border-color: var(--color-mint-border);
+  color: var(--color-mint);
+}
+
+[data-theme="light"] .agreement-badge-btn.signed {
+  background-color: #E8F5E9;
+  border-color: #A5D6A7;
+  color: #166534;
+}
+
+.agreement-badge-btn.unsigned {
+  background-color: var(--color-amber-soft);
+  border-color: var(--color-amber-border);
+  color: var(--color-amber-dark);
+}
+
+[data-theme="light"] .agreement-badge-btn.unsigned {
+  background-color: #FFFBEB;
+  border-color: #FDE68A;
+  color: #B45309;
+}
+
+/* ════════ Theme Switcher Icons ════════ */
+.theme-icon-sun { display: none; color: #FBBF24; }
+.theme-icon-moon { display: block; color: var(--color-primary); }
+[data-theme="dark"] .theme-icon-sun { display: block; }
+[data-theme="dark"] .theme-icon-moon { display: none; }
+
+/* ════════ Additional Dark Mode Polish & High Contrast ════════ */
+[data-theme="dark"] .card-property-title { color: #F8FAFC; }
+[data-theme="dark"] .card-tenant-text { color: #CBD5E1; }
+[data-theme="dark"] .card-specs-row { border-color: #213042; color: #94A3B8; }
+[data-theme="dark"] .estate-hero-card {
+  background: linear-gradient(145deg, #162C27, #0D1B17);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+}
+[data-theme="dark"] .estate-tag-pill {
+  background-color: rgba(52, 211, 153, 0.15);
+  color: #A7F3D0;
+}
+[data-theme="dark"] .estate-revenue-sub { color: #A7F3D0; }
+[data-theme="dark"] .hero-action-pills-strip {
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .btn-primary-action {
+  background-color: #10B981;
+  color: #04241C;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+[data-theme="dark"] .btn-primary-action:hover {
+  background-color: #34D399;
+}
+[data-theme="dark"] .btn-add-unit-top {
+  background-color: #10B981;
+  color: #04241C;
+  font-weight: 800;
+}
+[data-theme="dark"] .pill-item {
+  background-color: #151F2B;
+  border-color: #2B3D52;
+  color: #BAC7D5;
+}
+[data-theme="dark"] .pill-item.active {
+  background-color: #10B981;
+  border-color: #10B981;
+  color: #04241C;
+  font-weight: 800;
+}
+[data-theme="dark"] .hero-action-pill-btn {
+  background-color: #F59E0B;
+  color: #241400;
+  font-weight: 800;
+}
+[data-theme="dark"] .btn-secondary-action {
+  background-color: #1C2A3A;
+  border-color: #2D3D4E;
+  color: #F8FAFC;
+}
+[data-theme="dark"] .btn-secondary-action:hover {
+  background-color: #24354A;
+}
+[data-theme="dark"] .field-input,
+[data-theme="dark"] .field-select,
+[data-theme="dark"] .field-textarea {
+  background-color: #151F2B;
+  border-color: #2B3D52;
+  color: #F8FAFC;
+}
+[data-theme="dark"] .field-input:focus,
+[data-theme="dark"] .field-select:focus,
+[data-theme="dark"] .field-textarea:focus {
+  border-color: #34D399;
+}
+[data-theme="dark"] .field-label { color: #CBD5E1; }
+[data-theme="dark"] .sheet-header,
+[data-theme="dark"] .sheet-scroll-body,
+[data-theme="dark"] .sheet-footer-action {
+  background-color: #151F2B;
+}
+[data-theme="dark"] .sheet-title { color: #F8FAFC; }
+[data-theme="dark"] .sheet-handle-bar { background-color: #2D3D4E; }
+[data-theme="dark"] .search-wrapper {
+  background-color: #151F2B;
+  border-color: #2B3D52;
+}
+[data-theme="dark"] .search-input-field { color: #F8FAFC; }
+[data-theme="dark"] .toast-bar {
+  background-color: #1C2A3A;
+  border: 1px solid #2D3D4E;
+  color: #F8FAFC;
+}
+[data-theme="dark"] #waPreviewText {
+  background-color: #111A24;
+  color: #F8FAFC;
+  border: 1px solid #243344;
+  border-left: 4px solid #25D366;
+}
+
+/* ════════ RentAgent AI Due-Date Console ════════ */
+.agent-dashboard-card {
+  background: linear-gradient(135deg, rgba(21, 60, 53, 0.08), rgba(229, 185, 109, 0.08));
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-dashboard-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.agent-dashboard-card:active {
+  transform: scale(0.99);
+}
+
+[data-theme="dark"] .agent-dashboard-card {
+  background: linear-gradient(145deg, #122520, #0C1A16);
+  border-color: rgba(52, 211, 153, 0.28);
+}
+
+.agent-pulse-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #10B981;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.agent-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 3px;
+}
+
+[data-theme="light"] .agent-tag-badge {
+  background-color: #E8F5E9;
+  color: #166534;
+}
+
+.agent-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--color-text-navy);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.agent-card-sub {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.agent-btn-mini {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(21, 60, 53, 0.25);
+}
+
+[data-theme="dark"] .agent-btn-mini {
+  background-color: #10B981;
+  color: #04241C;
+}
+
+.agent-queue-card {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
+
+.agent-status-pill {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.agent-status-pill.approaching {
+  background-color: var(--color-amber-soft);
+  color: var(--color-amber-dark);
+  border: 1px solid var(--color-amber-border);
+}
+
+.agent-status-pill.today,
+.agent-status-pill.overdue {
+  background-color: var(--color-coral-soft);
+  color: var(--color-coral);
+  border: 1px solid var(--color-coral-border);
+}
+
+.agent-status-pill.clear {
+  background-color: var(--color-mint-soft);
+  color: var(--color-mint);
+  border: 1px solid var(--color-mint-border);
+}
 </style>
 </head>
 <body>
@@ -1117,12 +1428,16 @@ body {
       </button>
 
       <!-- Theme Switcher -->
-      <button class="header-action-btn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Theme">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="header-action-btn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Theme" id="themeToggleBtn">
+        <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
           <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
     </div>
@@ -1164,6 +1479,11 @@ body {
           Remind All Dues
         </button>
       </div>
+    </div>
+
+    <!-- 🤖 Autonomous Rent Due-Date Dispatch Agent Banner -->
+    <div class="agent-dashboard-card" id="agentDashboardBanner" onclick="openAgentConsoleModal()">
+      <!-- Populated dynamically via renderAgentBanner() -->
     </div>
 
     <!-- Search Unit -->
@@ -1417,18 +1737,45 @@ body {
       <button class="sheet-close-btn" onclick="closeModal('waModal')">✕</button>
     </div>
     <div class="sheet-scroll-body">
-      <div id="waPreviewText" style="background:var(--color-surface-subtle); padding:12px; border-radius:var(--radius-sm); font-size:0.8125rem; white-space:pre-wrap; margin-bottom:14px; border-left:3px solid var(--color-wa);"></div>
+      <!-- Tone Selector -->
+      <div style="display:flex; gap:6px; margin-bottom:12px; overflow-x:auto; padding-bottom:4px;">
+        <button class="pill-item active" id="toneBtnExec" onclick="setWaTone('executive', this)" style="padding:4px 10px; font-size:0.75rem;">👔 Executive Formal</button>
+        <button class="pill-item" id="toneBtnCourteous" onclick="setWaTone('courteous', this)" style="padding:4px 10px; font-size:0.75rem;">🤝 Friendly Reminder</button>
+        <button class="pill-item" id="toneBtnUrgent" onclick="setWaTone('urgent', this)" style="padding:4px 10px; font-size:0.75rem;">🚨 Urgent Notice</button>
+      </div>
+
+      <div id="waPreviewText" style="background:var(--color-surface-subtle); padding:12px; border-radius:var(--radius-sm); font-size:0.8125rem; white-space:pre-wrap; margin-bottom:14px; border-left:3px solid var(--color-wa); font-family:monospace; line-height:1.45;"></div>
       <div style="text-align:center; margin-bottom:14px;">
         <div id="waModalQrCanvas" style="display:inline-block; padding:10px; background:#FFFFFF; border-radius:12px; border:1px solid var(--color-border);"></div>
         <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:6px;">UPI Scan & Pay QR Code included in message</div>
       </div>
       <div style="display:flex; flex-direction:column; gap:8px;">
-        <button class="btn-primary-action" style="background-color:var(--color-wa);" onclick="triggerWhatsAppSend()">
+        <button class="btn-primary-action" style="background-color:var(--color-wa); color:#FFFFFF;" onclick="triggerWhatsAppSend()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.3c1.45.79 3.09 1.22 4.82 1.22 5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.28c-.24.68-1.4 1.34-1.95 1.39-.52.05-1.18.23-3.8-1.04-3.14-1.52-5.16-4.71-5.32-4.92-.16-.21-1.28-1.7-1.28-3.24 0-1.54.81-2.3 1.1-2.61.29-.31.64-.39.85-.39.21 0 .43 0 .62.01.2.01.47-.08.73.55.27.64.92 2.25 1 2.42.08.17.13.37.03.58-.11.21-.16.34-.32.53-.16.19-.34.42-.48.56-.16.16-.33.33-.14.65.19.32.84 1.38 1.8 2.24 1.24 1.1 2.29 1.44 2.62 1.6.33.16.52.14.71-.08.2-.22.84-.98 1.07-1.32.22-.34.45-.28.75-.17.31.11 1.95.92 2.29 1.09.34.17.56.25.64.39.09.14.09.81-.15 1.49z"/></svg>
           Open in WhatsApp
         </button>
         <button class="btn-secondary-action" onclick="copyReminderText()">Copy Message Text</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. RentBook AI Due-Date Dispatch Agent Console Modal -->
+<div class="modal-overlay" id="agentModal">
+  <div class="bottom-sheet">
+    <div class="sheet-handle-bar"></div>
+    <div class="sheet-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:1.3rem;">🤖</span>
+        <div>
+          <span class="sheet-title">RentAgent Auto-Dispatch</span>
+          <div style="font-size:0.6875rem; color:var(--color-text-secondary); margin-top:1px;">Autonomous Due-Date Monitor & WhatsApp Dispatch</div>
+        </div>
+      </div>
+      <button class="sheet-close-btn" onclick="closeModal('agentModal')">✕</button>
+    </div>
+    <div class="sheet-scroll-body" id="agentModalBody">
+      <!-- Populated via renderAgentConsole() -->
     </div>
   </div>
 </div>
@@ -2008,8 +2355,8 @@ function renderPortfolioCards() {
             <div class="card-spec-item">
               📅 11-Mo Cycle: Month ${status.months.length}
             </div>
-            <div class="card-spec-item" style="color:${status.isExpiring ? 'var(--color-amber-dark)' : 'var(--color-mint)'};">
-              ${status.isExpiring ? `⚠️ Expiring in ${status.daysToExpiry}d` : '✓ Agreement Active'}
+            <div class="card-spec-item" style="color:${status.isUnsigned ? 'var(--color-amber-dark)' : status.isExpiring ? 'var(--color-coral)' : 'var(--color-mint)'}; font-weight:700;">
+              ${status.isUnsigned ? '⚠️ Agreement Unsigned' : status.isExpiring ? `⚠️ Expiring in ${status.daysToExpiry}d` : '✓ Agreement Signed'}
             </div>
           </div>
         </div>
@@ -2071,12 +2418,13 @@ function renderRentRollLedger() {
         </div>
 
         <!-- Action Row -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:10px; border-top:1px solid var(--color-border-subtle);">
-          <button style="border:none; background:transparent; font-size:0.75rem; color:var(--color-blue); font-weight:700; cursor:pointer;" onclick="toggleSignedAgreement('${prop.id}', '${currentAgr.signedKey}')">
-            ${currentAgr.signed ? '✓ Agreement Signed' : '⚠️ Unsigned (Tap to Sign)'}
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:10px; border-top:1px solid var(--color-border-subtle); gap:10px; flex-wrap:wrap;">
+          <button class="agreement-badge-btn ${currentAgr.signed ? 'signed' : 'unsigned'}" onclick="toggleSignedAgreement('${prop.id}', '${currentAgr.signedKey}')" title="Tap to toggle agreement status">
+            <span style="font-size:0.875rem;">${currentAgr.signed ? '✓' : '⚠️'}</span>
+            <span>${currentAgr.signed ? 'Agreement Signed & Active' : 'Agreement Unsigned (Tap to Sign)'}</span>
           </button>
           <button class="hero-action-pill-btn" style="padding:6px 12px; font-size:0.75rem;" onclick="openWhatsAppReminderModal('${prop.id}')">
-            WhatsApp Link
+            WhatsApp Notice
           </button>
         </div>
       </div>
@@ -2093,6 +2441,7 @@ function togglePaymentStatus(propId, monthKey) {
   saveProperties(props);
   renderRentRollLedger();
   renderPortfolioCards();
+  if (typeof renderAgentBanner === 'function') renderAgentBanner();
   showToast(`Updated status for ${monthKey}`);
 }
 
@@ -2104,7 +2453,10 @@ function toggleSignedAgreement(propId, signedKey) {
   target.signed[signedKey] = !target.signed[signedKey];
   saveProperties(props);
   renderRentRollLedger();
-  showToast('Signed status updated');
+  renderPortfolioCards();
+  if (typeof renderAgentBanner === 'function') renderAgentBanner();
+  const isSigned = !!target.signed[signedKey];
+  showToast(isSigned ? '✓ Agreement marked Signed & Active' : '⚠️ Agreement marked Unsigned');
 }
 
 /* ════════ Tab 3: Tenants Directory ════════ */
@@ -2285,7 +2637,7 @@ function openUnitDetailsSheet(propId) {
     </div>
 
     <!-- Tenant & Lease Snapshot -->
-    <div style="background:var(--color-surface-subtle); border-radius:var(--radius-md); padding:14px; margin-bottom:16px;">
+    <div style="background:var(--color-surface-subtle); border-radius:var(--radius-md); padding:14px; margin-bottom:14px;">
       <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
         <span style="font-size:0.75rem; color:var(--color-text-muted);">Tenant Name</span>
         <span style="font-weight:700; font-size:0.875rem;">${prop.tenant}</span>
@@ -2302,6 +2654,18 @@ function openUnitDetailsSheet(propId) {
         <span style="font-size:0.75rem; color:var(--color-text-muted);">Annual Compounding Escalation</span>
         <span style="font-weight:700; color:var(--color-primary);">+${prop.increasePercent || 5}% per 11 months</span>
       </div>
+    </div>
+
+    <!-- 11-Month Legal Lease Agreement Status Card -->
+    <div style="background:var(--color-surface-card); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:12px 14px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+      <div>
+        <div style="font-size:0.6875rem; color:var(--color-text-muted); text-transform:uppercase; font-weight:700;">Legal Lease Agreement</div>
+        <div style="font-size:0.875rem; font-weight:700; color:var(--color-text-navy);">${fmtDate(currentAgr.startDate)} – ${fmtDate(currentAgr.endDate)}</div>
+      </div>
+      <button class="agreement-badge-btn ${currentAgr.signed ? 'signed' : 'unsigned'}" onclick="toggleSignedAgreement('${prop.id}', '${currentAgr.signedKey}'); openUnitDetailsSheet('${prop.id}');" title="Toggle Agreement Status">
+        <span style="font-size:0.875rem;">${currentAgr.signed ? '✓' : '⚠️'}</span>
+        <span>${currentAgr.signed ? 'Signed & Active' : 'Tap to Sign'}</span>
+      </button>
     </div>
 
     <!-- 11-Month Payment Chips -->
@@ -2339,8 +2703,145 @@ function triggerActiveDetailEdit() {
   }
 }
 
-/* ════════ WhatsApp Reminders with QR ════════ */
-function openWhatsAppReminderModal(propId) {
+/* ════════ Professional WhatsApp Message Engine ════════ */
+let currentWaTone = 'executive';
+
+function setWaTone(tone, btn) {
+  currentWaTone = tone;
+  document.querySelectorAll('#waModal .pill-item').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  if (activeWaPropId) {
+    const props = getStoredProperties();
+    const prop = props.find(p => p.id === activeWaPropId);
+    if (prop) {
+      const status = getPropertyStatus(prop);
+      const rentDue = status.overdueRent || status.currentAgr.rent;
+      const message = generateProfessionalWhatsAppNotice(prop, rentDue, tone);
+      const previewEl = document.getElementById('waPreviewText');
+      if (previewEl) previewEl.textContent = message;
+    }
+  }
+}
+
+function generateProfessionalWhatsAppNotice(prop, amountDue, customTone) {
+  const upi = getLandlordSettings();
+  const status = getPropertyStatus(prop);
+  const currentAgr = status.currentAgr;
+  const cfg = typeof getAgentConfig === 'function' ? getAgentConfig() : { dueDay: 5, tone: 'executive' };
+  const tone = customTone || currentWaTone || cfg.tone || 'executive';
+
+  const invDate = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const monthStr = months[invDate.getMonth()] + ' ' + invDate.getFullYear();
+  const refCode = `RB-${prop.name.replace(/[^a-zA-Z0-9]/g, '').slice(0, 4).toUpperCase()}-${invDate.getFullYear()}${String(invDate.getMonth()+1).padStart(2,'0')}`;
+
+  const upiLink = upi.customLink || `https://upi.pe/${upi.upiId}`;
+
+  if (tone === 'courteous') {
+    return `*RENT PAYMENT STATEMENT — ${monthStr.toUpperCase()}*
+Ref: ${refCode}
+
+Dear ${prop.tenant},
+
+Greetings. Hope you are having a pleasant week.
+
+This is a courteous reminder that the rent for *${prop.name}* for ${monthStr} is due.
+
+📋 *Statement Details:*
+• Property Unit: *${prop.name}*
+• Tenant: *${prop.tenant}*
+• Amount Payable: *${formatINR(amountDue)}*
+• Lease Term: *11-Month Agreement (${currentAgr.signed ? '✓ Signed' : 'Pending Signature'})*
+
+💳 *Quick UPI Payment:*
+Tap to pay directly:
+${upiLink}
+
+Or use UPI ID:
+\`${upi.upiId}\`
+Beneficiary: *${upi.name}*
+
+QR code is attached for instant camera scan. Kindly share transaction confirmation once sent.
+
+Warm regards,
+*${upi.name}*
+${prop.name} Management`;
+  }
+
+  if (tone === 'urgent') {
+    return `🚨 *URGENT NOTICE: OUTSTANDING RENT PAYMENT*
+Invoice Ref: ${refCode}
+
+To: *${prop.tenant}*
+Property: *${prop.name}*
+Date: ${fmtDate(new Date())}
+
+Dear ${prop.tenant},
+
+Our records indicate an overdue rent balance for *${prop.name}*. Please clear the outstanding amount today to avoid lease disruption.
+
+⚠️ *OVERDUE SUMMARY:*
+• Property Unit: *${prop.name}*
+• Total Overdue: *${formatINR(amountDue)}*
+• Agreement: *${currentAgr.signed ? '✓ Signed & Enforced' : 'Pending'}*
+
+💳 *PAYMENT CHANNELS (UPI):*
+• 1-Tap Payment Link: ${upiLink}
+• UPI ID: \`${upi.upiId}\`
+• Beneficiary: *${upi.name}*
+
+Please remit immediately and share the transaction UTR number.
+
+Sincerely,
+*${upi.name}*
+Accounts & Asset Administration`;
+  }
+
+  // Default: Executive Professional Invoice
+  return `━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏢 *RENT PAYMENT INVOICE & NOTICE*
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+*Invoice Ref:* ${refCode}
+*Billing Cycle:* ${monthStr}
+*Issue Date:* ${fmtDate(new Date())}
+
+*Billed To:*
+${prop.tenant}
+*Property Unit:* ${prop.name}
+${prop.locality ? `*Location:* ${prop.locality}\n` : ''}
+Dear ${prop.tenant},
+
+Greetings. Please find below the formal rent invoice for *${prop.name}* for the current billing cycle.
+
+📊 *INVOICE SUMMARY*
+• Monthly Lease: *${formatINR(status.currentAgr.rent)}*
+${amountDue > status.currentAgr.rent ? `• Total Pending Dues: *${formatINR(amountDue)}*\n` : ''}• Net Payable: *${formatINR(amountDue)}*
+• Due Date: *${cfg.dueDay}th ${months[invDate.getMonth()]}*
+• Agreement Status: *${currentAgr.signed ? '✓ 11-Month Lease Signed & Active' : '⚠️ Pending Signature'}*
+
+💳 *OFFICIAL SETTLEMENT CHANNELS (UPI)*
+1️⃣ *Direct 1-Tap Pay Link:*
+${upiLink}
+
+2️⃣ *Instant UPI VPA (Copy & Paste):*
+\`${upi.upiId}\`
+
+3️⃣ *Beneficiary Name:*
+*${upi.name}*
+
+📸 *Scan & Pay QR Code:*
+Official UPI QR code has been generated and attached for instant scanning via Google Pay, PhonePe, Paytm or BHIM.
+
+Kindly share payment confirmation once processed so your RentBook ledger is updated.
+
+Warm regards,
+*${upi.name}*
+_Property Management & Accounts — RentBook_
+━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+}
+
+function openWhatsAppReminderModal(propId, customTone) {
   activeWaPropId = propId;
   const props = getStoredProperties();
   const prop = props.find(p => p.id === propId);
@@ -2352,10 +2853,16 @@ function openWhatsAppReminderModal(propId) {
 
   const upiDeepLink = `upi://pay?pa=${encodeURIComponent(upi.upiId)}&pn=${encodeURIComponent(upi.name)}&am=${rentDue}&cu=INR&tn=${encodeURIComponent(`Rent for ${prop.name}`)}`;
 
-  const message = `Namaste ${prop.tenant},\n\nGentle reminder regarding rent for *${prop.name}*.\nAmount: *${formatINR(rentDue)}*.\n\nPay directly via UPI: ${upiDeepLink}\nor UPI ID: ${upi.upiId}\n\nThank you,\n${upi.name}`;
+  const tone = customTone || currentWaTone || 'executive';
+  const message = generateProfessionalWhatsAppNotice(prop, rentDue, tone);
 
   document.getElementById('waModalTitle').textContent = `Reminder: ${prop.tenant}`;
   document.getElementById('waPreviewText').textContent = message;
+
+  // Sync tone buttons in modal
+  document.querySelectorAll('#waModal .pill-item').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.getElementById(tone === 'courteous' ? 'toneBtnCourteous' : tone === 'urgent' ? 'toneBtnUrgent' : 'toneBtnExec');
+  if (activeBtn) activeBtn.classList.add('active');
 
   renderDynamicQr('waModalQrCanvas', upiDeepLink);
   openModal('waModal');
@@ -2370,19 +2877,30 @@ function triggerWhatsAppSend() {
   const phone = prop.phone.replace(/[^0-9]/g, '');
   const cleanPhone = phone.length === 10 ? '91' + phone : phone;
 
+  if (typeof addAgentLog === 'function') {
+    addAgentLog('Sent WhatsApp Notice', `${prop.tenant} (${prop.name})`);
+  }
+
   window.open(`https://wa.me/${cleanPhone}?text=${text}`, '_blank');
 }
 
 function copyReminderText() {
   const text = document.getElementById('waPreviewText').textContent;
   navigator.clipboard.writeText(text).then(() => {
-    showToast('Reminder copied to clipboard');
+    showToast('Notice copied to clipboard');
   }).catch(() => {
     showToast('Copied to clipboard');
   });
 }
 
 function openBulkRemindModal() {
+  if (typeof openAgentConsoleModal === 'function') {
+    const { queue } = evaluateRentAgentStatus();
+    if (queue.length > 0) {
+      openAgentConsoleModal();
+      return;
+    }
+  }
   const props = getStoredProperties();
   const pendingProps = props.filter(p => getPropertyStatus(p).isOverdue);
   if (pendingProps.length === 0) {
@@ -2720,11 +3238,419 @@ function toggleTheme() {
   const next = current === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('haven_theme', next);
+  renderPortfolioCards();
+  renderRentRollLedger();
+  if (typeof renderAgentBanner === 'function') renderAgentBanner();
 }
 
 function initTheme() {
   const saved = localStorage.getItem('haven_theme') || 'light';
   document.documentElement.setAttribute('data-theme', saved);
+}
+
+/* ════════ RentBook AI Due-Date Dispatch Agent Engine ════════ */
+const DEFAULT_AGENT_CONFIG = {
+  enabled: true,
+  dueDay: 5,           // Default rent due on 5th of each month
+  advanceDays: 2,      // Remind 2 days prior (3rd, 4th, 5th)
+  tone: 'executive',
+  autoNotify: true
+};
+
+function getAgentConfig() {
+  try {
+    const saved = localStorage.getItem('rentbook_agent_config');
+    return saved ? { ...DEFAULT_AGENT_CONFIG, ...JSON.parse(saved) } : DEFAULT_AGENT_CONFIG;
+  } catch {
+    return DEFAULT_AGENT_CONFIG;
+  }
+}
+
+function saveAgentConfig(cfg) {
+  localStorage.setItem('rentbook_agent_config', JSON.stringify(cfg));
+}
+
+function getAgentLogs() {
+  try {
+    return JSON.parse(localStorage.getItem('rentbook_agent_logs')) || [];
+  } catch {
+    return [];
+  }
+}
+
+function addAgentLog(action, details) {
+  const logs = getAgentLogs();
+  logs.unshift({
+    timestamp: new Date().toISOString(),
+    action,
+    details
+  });
+  if (logs.length > 30) logs.pop();
+  localStorage.setItem('rentbook_agent_logs', JSON.stringify(logs));
+}
+
+function evaluateRentAgentStatus() {
+  const cfg = getAgentConfig();
+  const props = getStoredProperties();
+  const now = new Date();
+  const currentDay = now.getDate();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  const currentMonthKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+  const queue = [];
+
+  for (const prop of props) {
+    const status = getPropertyStatus(prop);
+    const payments = prop.payments || {};
+    const isPaidThisMonth = !!payments[currentMonthKey];
+
+    if (!isPaidThisMonth) {
+      const dueDay = prop.dueDay || cfg.dueDay;
+      const daysDiff = dueDay - currentDay;
+
+      let urgency = 'normal';
+      let tag = '';
+      let priority = 1;
+
+      if (daysDiff < 0) {
+        urgency = 'overdue';
+        tag = `🚨 ${Math.abs(daysDiff)}d Overdue`;
+        priority = 3;
+      } else if (daysDiff === 0) {
+        urgency = 'today';
+        tag = '⚡ Due Today';
+        priority = 2;
+      } else if (daysDiff <= cfg.advanceDays) {
+        urgency = 'approaching';
+        tag = `⏳ Due in ${daysDiff}d (${dueDay}th)`;
+        priority = 1;
+      } else {
+        urgency = 'upcoming';
+        tag = `📅 Due on ${dueDay}th`;
+        priority = 0;
+      }
+
+      if (daysDiff <= cfg.advanceDays) {
+        queue.push({
+          prop,
+          status,
+          dueDay,
+          daysDiff,
+          urgency,
+          tag,
+          priority,
+          amountDue: status.overdueRent || status.currentAgr.rent
+        });
+      }
+    }
+  }
+
+  queue.sort((a, b) => b.priority - a.priority);
+  return { cfg, queue, totalUnits: props.length };
+}
+
+function renderAgentBanner() {
+  const banner = document.getElementById('agentDashboardBanner');
+  if (!banner) return;
+
+  const { cfg, queue, totalUnits } = evaluateRentAgentStatus();
+
+  if (!cfg.enabled) {
+    banner.innerHTML = `
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:1.3rem;">🤖</span>
+        <div>
+          <div class="agent-card-title">RentAgent (Paused)</div>
+          <div class="agent-card-sub">Autonomous due-date reminders are currently off.</div>
+        </div>
+      </div>
+      <button class="agent-btn-mini" onclick="event.stopPropagation(); openAgentConsoleModal();">Turn On</button>
+    `;
+    return;
+  }
+
+  if (queue.length > 0) {
+    const topItem = queue[0];
+    banner.innerHTML = `
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="position:relative;">
+          <span style="font-size:1.4rem;">🤖</span>
+          <span class="agent-pulse-dot" style="position:absolute; bottom:0; right:0;"></span>
+        </div>
+        <div>
+          <div class="agent-tag-badge">
+            <span class="agent-pulse-dot"></span>
+            <span>RentAgent Active • ${queue.length} Due Soon</span>
+          </div>
+          <div class="agent-card-title">
+            <span>${topItem.prop.name}: ${topItem.tag}</span>
+          </div>
+          <div class="agent-card-sub">
+            ${queue.length} tenant${queue.length > 1 ? 's' : ''} approaching due date (${cfg.dueDay}th). Tap to dispatch.
+          </div>
+        </div>
+      </div>
+      <button class="agent-btn-mini" onclick="event.stopPropagation(); openAgentConsoleModal();">
+        <span>⚡ Auto-Dispatch</span>
+      </button>
+    `;
+  } else {
+    banner.innerHTML = `
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="position:relative;">
+          <span style="font-size:1.4rem;">🤖</span>
+          <span class="agent-pulse-dot" style="position:absolute; bottom:0; right:0;"></span>
+        </div>
+        <div>
+          <div class="agent-tag-badge">
+            <span class="agent-pulse-dot"></span>
+            <span>RentAgent Active</span>
+          </div>
+          <div class="agent-card-title">All Leased Units Up to Date</div>
+          <div class="agent-card-sub">
+            Monitoring ${totalUnits} units for upcoming ${cfg.dueDay}th due date.
+          </div>
+        </div>
+      </div>
+      <button class="agent-btn-mini" style="background-color:transparent; color:var(--color-primary); border:1px solid var(--color-border);" onclick="event.stopPropagation(); openAgentConsoleModal();">
+        <span>Settings ⚙️</span>
+      </button>
+    `;
+  }
+}
+
+function openAgentConsoleModal() {
+  renderAgentConsole();
+  openModal('agentModal');
+}
+
+function renderAgentConsole() {
+  const container = document.getElementById('agentModalBody');
+  if (!container) return;
+
+  const { cfg, queue, totalUnits } = evaluateRentAgentStatus();
+  const logs = getAgentLogs();
+
+  container.innerHTML = `
+    <!-- Agent Master Status Box -->
+    <div style="background:var(--color-surface-subtle); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; margin-bottom:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="agent-pulse-dot"></span>
+          <strong style="font-family:var(--font-display); font-size:0.9375rem; color:var(--color-text-navy);">Autonomous Dispatch Engine</strong>
+        </div>
+        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.75rem; font-weight:700; color:var(--color-primary);">
+          <input type="checkbox" id="agentToggleEnabled" ${cfg.enabled ? 'checked' : ''} onchange="toggleAgentEnabled(this.checked)">
+          <span>${cfg.enabled ? 'ENABLED' : 'PAUSED'}</span>
+        </label>
+      </div>
+      <div style="font-size:0.8125rem; color:var(--color-text-secondary); line-height:1.45;">
+        RentAgent tracks monthly due dates (${cfg.dueDay}th), identifies tenants whose rent is approaching or overdue, and pre-generates formal WhatsApp invoices with embedded UPI links and QR codes.
+      </div>
+    </div>
+
+    <!-- Active Due Queue Section -->
+    <div style="margin-bottom:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <div style="font-family:var(--font-display); font-weight:700; font-size:1rem; color:var(--color-text-navy);">
+          Active Reminders Queue (${queue.length})
+        </div>
+        ${queue.length > 0 ? `
+          <button class="agent-btn-mini" onclick="runAgentBatchDispatch()">
+            <span>🚀 Dispatch All (${queue.length})</span>
+          </button>
+        ` : ''}
+      </div>
+
+      ${queue.length === 0 ? `
+        <div style="text-align:center; padding:24px 16px; background:var(--color-surface-card); border:1px dashed var(--color-border); border-radius:var(--radius-md);">
+          <div style="font-size:1.8rem; margin-bottom:6px;">🎉</div>
+          <div style="font-weight:700; font-size:0.9375rem; color:var(--color-text-navy);">All ${totalUnits} Units Are Clear</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:2px;">No tenants are pending or near due date (${cfg.dueDay}th of month).</div>
+        </div>
+      ` : `
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          ${queue.map(item => `
+            <div class="agent-queue-card">
+              <div style="flex:1;">
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;">
+                  <strong style="font-family:var(--font-display); font-size:0.9375rem; color:var(--color-text-navy);">${item.prop.name}</strong>
+                  <span class="agent-status-pill ${item.urgency}">${item.tag}</span>
+                </div>
+                <div style="font-size:0.75rem; color:var(--color-text-secondary);">
+                  👤 ${item.prop.tenant} • 📞 ${item.prop.phone}
+                </div>
+                <div style="font-family:var(--font-display); font-weight:800; font-size:0.9375rem; color:var(--color-primary); margin-top:2px;">
+                  Payable: ${formatINR(item.amountDue)}
+                </div>
+              </div>
+              <button class="hero-action-pill-btn" style="padding:6px 12px; font-size:0.75rem;" onclick="dispatchSingleAgentTenant('${item.prop.id}')" title="Send WhatsApp Invoice">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.22-1.3c1.45.79 3.09 1.22 4.82 1.22 5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.82 14.28c-.24.68-1.4 1.34-1.95 1.39-.52.05-1.18.23-3.8-1.04-3.14-1.52-5.16-4.71-5.32-4.92-.16-.21-1.28-1.7-1.28-3.24 0-1.54.81-2.3 1.1-2.61.29-.31.64-.39.85-.39.21 0 .43 0 .62.01.2.01.47-.08.73.55.27.64.92 2.25 1 2.42.08.17.13.37.03.58-.11.21-.16.34-.32.53-.16.19-.34.42-.48.56-.16.16-.33.33-.14.65.19.32.84 1.38 1.8 2.24 1.24 1.1 2.29 1.44 2.62 1.6.33.16.52.14.71-.08.2-.22.84-.98 1.07-1.32.22-.34.45-.28.75-.17.31.11 1.95.92 2.29 1.09.34.17.56.25.64.39.09.14.09.81-.15 1.49z"/></svg>
+                <span>Send WhatsApp</span>
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    </div>
+
+    <!-- Agent Settings Card -->
+    <div style="background:var(--color-surface-card); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px; margin-bottom:16px;">
+      <div style="font-family:var(--font-display); font-weight:700; font-size:0.9375rem; color:var(--color-text-navy); margin-bottom:10px;">
+        ⚙️ Agent Automation Rules
+      </div>
+      <form onsubmit="saveAgentSettingsFromForm(event)">
+        <div class="grid-two-col">
+          <div class="form-field-group">
+            <label class="field-label">Rent Due Day of Month</label>
+            <select class="field-select" id="agentSettingDueDay">
+              ${[1, 2, 3, 4, 5, 6, 7, 10, 15, 20, 25].map(d => `
+                <option value="${d}" ${cfg.dueDay == d ? 'selected' : ''}>${d}th of every month</option>
+              `).join('')}
+            </select>
+          </div>
+          <div class="form-field-group">
+            <label class="field-label">Advance Notice Window</label>
+            <select class="field-select" id="agentSettingAdvance">
+              <option value="1" ${cfg.advanceDays == 1 ? 'selected' : ''}>1 Day Prior</option>
+              <option value="2" ${cfg.advanceDays == 2 ? 'selected' : ''}>2 Days Prior (Default)</option>
+              <option value="3" ${cfg.advanceDays == 3 ? 'selected' : ''}>3 Days Prior</option>
+              <option value="5" ${cfg.advanceDays == 5 ? 'selected' : ''}>5 Days Prior</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Default Message Tone</label>
+          <select class="field-select" id="agentSettingTone">
+            <option value="executive" ${cfg.tone === 'executive' ? 'selected' : ''}>👔 Executive Formal Invoice (Recommended)</option>
+            <option value="courteous" ${cfg.tone === 'courteous' ? 'selected' : ''}>🤝 Courteous Friendly Statement</option>
+            <option value="urgent" ${cfg.tone === 'urgent' ? 'selected' : ''}>🚨 Urgent Notice</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <button type="button" class="btn-secondary-action" style="width:auto; padding:7px 12px; font-size:0.75rem;" onclick="requestAgentNotifications()">
+            🔔 System Notifications (${typeof Notification !== 'undefined' ? Notification.permission : 'Off'})
+          </button>
+          <button type="submit" class="btn-primary-action" style="width:auto; padding:7px 16px; font-size:0.75rem;">
+            Save Agent Rules
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Agent Activity Log -->
+    ${logs.length > 0 ? `
+      <div>
+        <div style="font-family:var(--font-display); font-weight:700; font-size:0.875rem; color:var(--color-text-navy); margin-bottom:8px;">
+          📜 Recent Agent Activity
+        </div>
+        <div style="background:var(--color-surface-subtle); border-radius:var(--radius-sm); padding:10px; font-size:0.75rem; color:var(--color-text-secondary); max-height:120px; overflow-y:auto;">
+          ${logs.slice(0, 8).map(l => `
+            <div style="padding:4px 0; border-bottom:1px solid var(--color-border-subtle); display:flex; justify-content:space-between;">
+              <span><strong>${l.action}:</strong> ${l.details}</span>
+              <span style="color:var(--color-text-muted); font-size:0.6875rem;">${fmtDate(new Date(l.timestamp))}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+  `;
+}
+
+function toggleAgentEnabled(enabled) {
+  const cfg = getAgentConfig();
+  cfg.enabled = enabled;
+  saveAgentConfig(cfg);
+  renderAgentBanner();
+  renderAgentConsole();
+  showToast(enabled ? '🤖 RentAgent Enabled' : '⏸️ RentAgent Paused');
+}
+
+function saveAgentSettingsFromForm(e) {
+  e.preventDefault();
+  const cfg = getAgentConfig();
+  cfg.dueDay = Number(document.getElementById('agentSettingDueDay').value) || 5;
+  cfg.advanceDays = Number(document.getElementById('agentSettingAdvance').value) || 2;
+  cfg.tone = document.getElementById('agentSettingTone').value || 'executive';
+  saveAgentConfig(cfg);
+  renderAgentBanner();
+  renderAgentConsole();
+  showToast('Agent automation rules saved');
+}
+
+function requestAgentNotifications() {
+  if (typeof Notification === 'undefined') {
+    showToast('Notifications not supported in this browser');
+    return;
+  }
+  Notification.requestPermission().then(perm => {
+    renderAgentConsole();
+    showToast(perm === 'granted' ? '🔔 Due-date notifications enabled!' : 'Notifications ' + perm);
+  });
+}
+
+function dispatchSingleAgentTenant(propId) {
+  closeModal('agentModal');
+  openWhatsAppReminderModal(propId);
+  const props = getStoredProperties();
+  const prop = props.find(p => p.id === propId);
+  if (prop) {
+    addAgentLog('Dispatched Notice', `${prop.tenant} (${prop.name})`);
+  }
+}
+
+let agentBatchQueue = [];
+let agentBatchIndex = 0;
+
+function runAgentBatchDispatch() {
+  const { queue } = evaluateRentAgentStatus();
+  if (queue.length === 0) {
+    showToast('Queue is empty');
+    return;
+  }
+  agentBatchQueue = queue;
+  agentBatchIndex = 0;
+  closeModal('agentModal');
+  dispatchNextInBatch();
+}
+
+function dispatchNextInBatch() {
+  if (agentBatchIndex >= agentBatchQueue.length) {
+    showToast('✅ All queued notices processed');
+    renderAgentBanner();
+    return;
+  }
+  const item = agentBatchQueue[agentBatchIndex];
+  agentBatchIndex++;
+  openWhatsAppReminderModal(item.prop.id);
+  addAgentLog('Batch Auto-Send', `${item.prop.tenant} (${item.prop.name}) - ${formatINR(item.amountDue)}`);
+  showToast(`Processing notice ${agentBatchIndex} of ${agentBatchQueue.length}: ${item.prop.name}`);
+}
+
+function initRentAgent() {
+  evaluateRentAgentStatus();
+  renderAgentBanner();
+
+  // Check notification trigger once a day if approaching due date
+  const { cfg, queue } = evaluateRentAgentStatus();
+  if (cfg.enabled && queue.length > 0) {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const lastNotified = localStorage.getItem('rentbook_last_notify_date');
+    if (lastNotified !== todayStr) {
+      if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+        try {
+          new Notification('RentBook Due-Date Alert 🤖', {
+            body: `${queue.length} tenant(s) approaching rent due date (${cfg.dueDay}th). Tap to send WhatsApp notices.`,
+            icon: 'icon-192.png'
+          });
+          localStorage.setItem('rentbook_last_notify_date', todayStr);
+        } catch {}
+      }
+    }
+  }
 }
 
 /* ════════ Init ════════ */
@@ -2748,6 +3674,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderMaintenanceHub();
   renderSettingsQr();
   populateTicketUnitSelect();
+  initRentAgent();
 });
 </script>
 </body>
